@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { connect } from "react-redux";
+import { Route, Switch } from "react-router-dom";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(getAddresses());
+    this.props.dispatch(getUWReviews());
+    this.props.dispatch(getPending());
+    this.props.dispatch(getArchived());
+  }
+  render() {
+    return (
+      <div className="App">
+        <p>this is the app level</p>
+        <main>
+          <Navi />
+          <br />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/pending" component={Pending} />
+            <Route path="/uwreviews" component={UWReviews} />
+            <Route path="/archived" component={Archived} />
+          </Switch>
+        </main>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default connect()(App);
