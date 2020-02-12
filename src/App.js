@@ -8,7 +8,7 @@ class App extends React.Component {
     this.props.dispatch(getAddresses());
     this.props.dispatch(getUWReviews());
     this.props.dispatch(getPending());
-    this.props.dispatch(getArchived());
+    this.props.dispatch(getArchives());
   }
   render() {
     return (

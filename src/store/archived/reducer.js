@@ -54,5 +54,15 @@ export default (state = initialState, action) => {
           return acc;
         }, [])
       };
+
+    case LOAD_ARCHIVES_FAILURE:
+    case LOAD_ARCHIVE_FAILURE:
+    case ADD_ARCHIVE_FAILURE:
+    case DELETE_ARCHIVE_FAILURE:
+    case EDIT_ARCHIVE_FAILURE:
+      return { ...state, err: action.payload };
+
+    default:
+      return state;
   }
 };
