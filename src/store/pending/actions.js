@@ -23,7 +23,7 @@ export const getPendings = () => {
       type: LOAD_PENDINGS_PENDING
     });
     axios
-      .get("http://localhost8080/pending")
+      .get("http://localhost:8080/pending")
       .then(res => {
         dispatch({
           type: LOAD_PENDINGS_SUCCESS,
@@ -45,7 +45,7 @@ export const getOnePending = id => {
       type: LOAD_PENDING_PENDING
     });
     axios
-      .get(`http://localhost8080/pending/${id}`)
+      .get(`http://localhost:8080/pending/${id}`)
       .then(res => {
         dispatch({
           type: LOAD_PENDING_SUCCESS,
@@ -67,7 +67,7 @@ export const addPending = newPending => {
       type: ADD_PENDING_PENDING
     });
     axios
-      .post("http://localhost8080/pending", newPending)
+      .post("http://localhost:8080/pending", newPending)
       .then(res => {
         dispatch({
           type: ADD_PENDING_SUCCESS,
@@ -89,7 +89,7 @@ export const deletePending = id => {
       type: DELETE_PENDING_PENDING
     });
     axios
-      .delete(`http://localhost8080/pending/${id}`)
+      .delete(`http://localhost:8080/pending/${id}`)
       .then(res => {
         dispatch({
           type: DELETE_PENDING_SUCCESS,
@@ -111,7 +111,7 @@ export const editPending = (id, patchedPending) => {
       type: EDIT_PENDING_PENDING
     });
     axios
-      .patch(`http://loacalhost8080/pending/${id}`, patchedPending)
+      .patch(`http://loacalhost:8080/pending/${id}`, patchedPending)
       .then(res => {
         dispatch({
           type: EDIT_PENDING_SUCCESS,

@@ -42,18 +42,18 @@ export default (state = initialState, action) => {
         ...state,
         all: state.all.filter(archive => archive.id !== action.payload[0].id)
       };
-    // case EDIT_ARCHIVE_SUCCESS:
-    //   return {
-    //     ...state,
-    //     all: state.all.reduce((acc, patchedArchive) => {
-    //       if (archive.id === action.payload[0].id) {
-    //         acc.push(action.payload[0]);
-    //       } else {
-    //         acc.push(patchedArchive);
-    //       }
-    //       return acc;
-    //     }, [])
-    //   };
+    case EDIT_ARCHIVE_SUCCESS:
+      return {
+        ...state,
+        all: state.all.reduce((acc, patchedArchive) => {
+          if (this.archived.id === action.payload[0].id) {
+            acc.push(action.payload[0]);
+          } else {
+            acc.push(patchedArchive);
+          }
+          return acc;
+        }, [])
+      };
 
     case LOAD_ARCHIVES_FAILURE:
     case LOAD_ARCHIVE_FAILURE:

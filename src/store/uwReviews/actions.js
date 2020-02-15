@@ -23,7 +23,7 @@ export const getUWReviews = () => {
       type: LOAD_UWREVIEWS_PENDING
     });
     axios
-      .get("http://localhost8080/uwreviews")
+      .get("http://localhost:8080/uwreviews")
       .then(res => {
         dispatch({
           type: LOAD_UWREVIEWS_SUCCESS,
@@ -45,7 +45,7 @@ export const getOneUWReview = id => {
       type: LOAD_UWREVIEW_PENDING
     });
     axios
-      .get(`http://localhost8080/uwreviews/${id}`)
+      .get(`http://localhost:8080/uwreviews/${id}`)
       .then(res => {
         dispatch({
           type: LOAD_UWREVIEW_SUCCESS,
@@ -67,7 +67,7 @@ export const addUWReview = newUWReview => {
       type: ADD_UWREVIEW_PENDING
     });
     axios
-      .post("http://localhost8080/uwreviews", newUWReview)
+      .post("http://localhost:8080/uwreviews", newUWReview)
       .then(res => {
         dispatch({
           type: ADD_UWREVIEW_SUCCESS,
@@ -89,7 +89,7 @@ export const deleteUWReview = id => {
       type: DELETE_UWREVIEW_PENDING
     });
     axios
-      .delete(`http://localhost8080/uwreviews/${id}`)
+      .delete(`http://localhost:8080/uwreviews/${id}`)
       .then(res => {
         dispatch({
           type: DELETE_UWREVIEW_SUCCESS,
@@ -111,7 +111,7 @@ export const editUWReview = (id, patchedUWReview) => {
       type: EDIT_UWREVIEW_PENDING
     });
     axios
-      .patch(`http://loacalhost8080/uwreviews/${id}`, patchedUWReview)
+      .patch(`http://loacalhost:8080/uwreviews/${id}`, patchedUWReview)
       .then(res => {
         dispatch({
           type: EDIT_UWREVIEW_SUCCESS,

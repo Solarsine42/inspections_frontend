@@ -23,7 +23,7 @@ export const getArchives = () => {
       type: LOAD_ARCHIVES_PENDING
     });
     axios
-      .get("http://localhost8080/archived")
+      .get("http://localhost:8080/archived")
       .then(res => {
         dispatch({
           type: LOAD_ARCHIVES_SUCCESS,
@@ -45,7 +45,7 @@ export const getOneArchive = id => {
       type: LOAD_ARCHIVE_PENDING
     });
     axios
-      .get(`http://localhost8080/archived/${id}`)
+      .get(`http://localhost:8080/archived/${id}`)
       .then(res => {
         dispatch({
           type: LOAD_ARCHIVE_SUCCESS,
@@ -67,7 +67,7 @@ export const addArchive = newArchive => {
       type: ADD_ARCHIVE_PENDING
     });
     axios
-      .post("http://localhost8080/archived", newArchive)
+      .post("http://localhost:8080/archived", newArchive)
       .then(res => {
         dispatch({
           type: ADD_ARCHIVE_SUCCESS,
@@ -89,7 +89,7 @@ export const deleteArchive = id => {
       type: DELETE_ARCHIVE_PENDING
     });
     axios
-      .delete(`http://localhost8080/archived/${id}`)
+      .delete(`http://localhost:8080/archived/${id}`)
       .then(res => {
         dispatch({
           type: DELETE_ARCHIVE_SUCCESS,
@@ -111,7 +111,7 @@ export const editArchive = (id, patchedArchive) => {
       type: EDIT_ARCHIVE_PENDING
     });
     axios
-      .patch(`http://loacalhost8080/archived/${id}`, patchedArchive)
+      .patch(`http://loacalhost:8080/archived/${id}`, patchedArchive)
       .then(res => {
         dispatch({
           type: EDIT_ARCHIVE_SUCCESS,

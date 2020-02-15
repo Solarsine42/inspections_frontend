@@ -22,7 +22,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <p>this is the app level</p>
         <main>
           <Navi />
           <br />

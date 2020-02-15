@@ -42,18 +42,18 @@ export default (state = initialState, action) => {
         ...state,
         all: state.all.filter(uwreview => uwreview.id !== action.payload[0].id)
       };
-    // case EDIT_UWREVIEW_SUCCESS:
-    //   return {
-    //     ...state,
-    //     all: state.all.reduce((acc, patchedUWReview) => {
-    //       if (uwReview.id === action.payload[0].id) {
-    //         acc.push(action.payload[0]);
-    //       } else {
-    //         acc.push(patchedUWReview);
-    //       }
-    //       return acc;
-    //     }, [])
-    //   };
+    case EDIT_UWREVIEW_SUCCESS:
+      return {
+        ...state,
+        all: state.all.reduce((acc, patchedUWReview) => {
+          if (this.uwReview.id === action.payload[0].id) {
+            acc.push(action.payload[0]);
+          } else {
+            acc.push(patchedUWReview);
+          }
+          return acc;
+        }, [])
+      };
 
     case LOAD_UWREVIEWS_FAILURE:
     case LOAD_UWREVIEW_FAILURE:
