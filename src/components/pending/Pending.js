@@ -12,7 +12,7 @@ const Pending = props => {
   const address = props.addresses.filter(
     address => address.id === props.pending.address_id
   );
-  console.log("ADDRESS: ", address);
+
   return address ? (
     <ExpansionPanel style={{ background: "primary" }}>
       <ExpansionPanelSummary

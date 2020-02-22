@@ -67,7 +67,10 @@ const Navi = () => {
         </Toolbar>
       </AppBar>
       <div>
-        <Paper className={classes.root}>
+        <Paper
+          className={classes.root}
+          style={{ width: "90%", marginLeft: "5%" }}
+        >
           <Tabs
             value={value}
             onChange={handleChange}
