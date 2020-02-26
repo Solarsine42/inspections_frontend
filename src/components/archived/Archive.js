@@ -1,22 +1,34 @@
 import React from "react";
 import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import ButtonBase from "@material-ui/core/ButtonBase";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import IconButton from "@material-ui/core/IconButton";
 import Loading from "../utility/Loading";
-import GridList from "@material-ui/core/GridList";
-import GridListTile from "@material-ui/core/GridListTile";
-import GridListTileBar from "@material-ui/core/GridListTileBar";
-import ListSubheader from "@material-ui/core/ListSubheader";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: "inline-block",
-    flexWrap: "wrap",
-    justifyContent: "wrap-around",
-    overflow: "hidden",
-    backgroundColor: theme.palette.background.paper
+    flexGrow: 1,
+    display: "inline-block"
   },
-  icon: {
-    color: "rgba(255, 255, 255, 0.54)"
+  paper: {
+    padding: theme.spacing(2),
+    margin: "20px",
+    maxWidth: 350
+  },
+  image: {
+    width: 128,
+    height: 128
+  },
+  img: {
+    margin: "auto",
+    display: "block",
+    maxWidth: "100%",
+    maxHeight: "100%"
   }
 }));
 
@@ -28,21 +40,50 @@ const Archive = props => {
 
   return props.addresses ? (
     <div className={classes.root}>
-      <GridList style={{ marginLeft: "20px" }}>
-        <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}>
-          <ListSubheader component="div">
-            {props.archive.member_number}
-          </ListSubheader>
-        </GridListTile>
-        <GridListTile>
-          <img src={props.archive.document} />
-          <GridListTileBar
-            title={address[0] ? address[0].street_info : "Loading"}
-            subtitle={props.archive.inspection_date}
-          />
-        </GridListTile>
-        )}
-      </GridList>
+      <Paper className={classes.paper}>
+        <Grid container spacing={2}>
+          <Grid item>
+            <ButtonBase className={classes.image}>
+              <img
+                className={classes.img}
+                alt="complex"
+                src={props.archive.document}
+              />
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={12} sm container>
+            <Grid item xs container direction="column" spacing={2}>
+              <Grid item xs>
+                <Typography gutterBottom variant="subtitle1">
+                  {address[0] ? address[0].street_info : "Loading"}
+                </Typography>
+                <Typography variant="body2" gutterBottom>
+                  Member Number: {props.archive.member_number}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Inspection Date: {props.archive.inspection_date}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <IconButton
+                  aria-label="delete"
+                  color="secondary"
+                  className={classes.margin}
+                >
+                  <DeleteIcon />
+                </IconButton>
+                <IconButton
+                  aria-label="edit"
+                  color="primary"
+                  className={classes.margin}
+                >
+                  <EditIcon />
+                </IconButton>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Paper>
     </div>
   ) : (
     <Loading />

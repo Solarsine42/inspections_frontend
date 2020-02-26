@@ -9,7 +9,7 @@ import Navi from "./components/utility/Navi";
 import Home from "./components/utility/Home";
 import Pendings from "./components/pending/Pendings";
 import UWReviews from "./components/uwReviews/UWReviews";
-import Archived from "./components/archived/Archives";
+import Archives from "./components/archived/Archives";
 import "./App.css";
 
 class App extends React.Component {
@@ -29,7 +29,7 @@ class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route path="/pending" component={Pendings} />
             <Route path="/uwreviews" component={UWReviews} />
-            <Route path="/archived" component={Archived} />
+            <Route path="/archived" component={Archives} />
           </Switch>
         </main>
       </div>

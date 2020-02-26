@@ -85,7 +85,7 @@ const Navi = () => {
               <Tab label="Inspection Archive" />
             </Link>
             <Link to="/uwreviews">
-              <Tab label="Unterwriter Review" />
+              <Tab label="Underwriter Review" />
             </Link>
           </Tabs>
         </Paper>
