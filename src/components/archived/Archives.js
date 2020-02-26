@@ -3,13 +3,10 @@ import { connect } from "react-redux";
 import Archive from "./Archive";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import GridListTile from "@material-ui/core/GridListTile";
 
 const useStyles = makeStyles({});
 
 const Archives = props => {
-  console.log(props);
   const classes = useStyles();
   const [search, setSearch] = useState("");
   const archivesList = props.archives

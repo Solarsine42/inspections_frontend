@@ -21,7 +21,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Archive = props => {
-  console.log("ArchProps", props);
   const classes = useStyles();
   const address = props.addresses.filter(
     address => address.id === props.archive.address_id
