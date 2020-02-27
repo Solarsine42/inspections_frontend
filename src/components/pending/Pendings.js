@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import Pending from "./Pending";
 
@@ -30,7 +31,7 @@ const Pendings = props => {
   return (
     <div className={classes.root}>
       <form
-        style={{ marginLeft: "10%" }}
+        style={{ marginLeft: "5%" }}
         className={classes.form}
         noValidate
         autoComplete="off"
@@ -41,6 +42,13 @@ const Pendings = props => {
         <TextField label="Member Number" />
       </form>
       <br />
+      <Button
+        style={{ marginLeft: "5%", marginBottom: "20px" }}
+        color="primary"
+      >
+        Add New Inspection
+      </Button>
+
       <div>{pendingInspections}</div>
     </div>
   );

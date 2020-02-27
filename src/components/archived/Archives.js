@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import Archive from "./Archive";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import Fab from "@material-ui/core/Fab";
-import AddIcon from "@material-ui/icons/Add";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginLeft: "5%"
   },
   paper: {
     padding: theme.spacing(2),
@@ -36,25 +36,18 @@ const Archives = props => {
 
   return (
     <div className={classes.root}>
-      <div style={{ display: "inline-block" }}>
-        <div>
-          <form
-            className={classes.form}
-            noValidate
-            autoComplete="off"
-            name="search"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          >
-            <TextField label="Member Number" />
-          </form>
-        </div>
-        <div>
-          <Fab color="primary" aria-label="add">
-            <AddIcon />
-          </Fab>
-        </div>
-      </div>
+      <form
+        className={classes.form}
+        noValidate
+        autoComplete="off"
+        name="search"
+        value={search}
+        onChange={e => setSearch(e.target.value)}
+      >
+        <TextField label="Member Number" />
+      </form>
+      <br />
+      <Button color="primary">Add Archive</Button>
       <br />
       <div>{archivesList}</div>
     </div>

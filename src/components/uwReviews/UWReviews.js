@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import UWReview from "./UWReview";
 import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles({});
 
@@ -13,7 +14,7 @@ const UWReviews = props => {
     .map((review, i) => <UWReview key={i} review={review} />);
 
   return (
-    <div>
+    <div style={{ marginLeft: "5%" }}>
       <form
         className={classes.form}
         noValidate
@@ -24,6 +25,8 @@ const UWReviews = props => {
       >
         <TextField label="Member Number" />
       </form>
+      <br />
+      <Button color="primary">Add New UW Review</Button>
       <br />
       <div>{uwReviewsList}</div>
     </div>
