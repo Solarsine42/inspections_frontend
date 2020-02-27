@@ -13,8 +13,15 @@ const Pending = props => {
     address => address.id === props.pending.address_id
   );
 
+  const contactInfo =
+    props.pending.contact_info.slice(0, 9) +
+    "-" +
+    props.pending.contact_info.slice(9, 14);
+
   return address ? (
-    <ExpansionPanel style={{ background: "primary" }}>
+    <ExpansionPanel
+      style={{ background: "primary", width: "80%", marginLeft: "10%" }}
+    >
       <ExpansionPanelSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel-content"
@@ -28,10 +35,23 @@ const Pending = props => {
           </Typography>
         </Grid>
       </ExpansionPanelSummary>
+      <div>
+        <ExpansionPanelDetails>
+          <span>
+            <Typography>
+              Inspector Assigned:{" "}
+              {props.pending.inspector_id ? props.pending.inspector_id : "None"}
+            </Typography>
+          </span>
+          <span style={{ marginLeft: "30px" }}>
+            <Typography>Contact Info: {contactInfo}</Typography>
+          </span>
+        </ExpansionPanelDetails>
+      </div>
+
       <ExpansionPanelDetails>
         <Typography>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-          malesuada lacus ex, sit amet blandit leo lobortis eget.
+          Special Instructions: {props.pending.special_instructions}
         </Typography>
       </ExpansionPanelDetails>
     </ExpansionPanel>

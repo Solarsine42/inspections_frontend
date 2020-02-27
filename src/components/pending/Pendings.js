@@ -30,6 +30,7 @@ const Pendings = props => {
   return (
     <div className={classes.root}>
       <form
+        style={{ marginLeft: "10%" }}
         className={classes.form}
         noValidate
         autoComplete="off"
