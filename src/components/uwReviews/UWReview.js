@@ -10,7 +10,7 @@ import Loading from "../utility/Loading";
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 400,
+    minWidth: 300,
     display: "inline-block",
     margin: "20px"
   },

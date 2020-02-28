@@ -4,22 +4,9 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import Pending from "./Pending";
+import AddPending from "./AddPending";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: "100%"
-  },
-  form: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: 200
-    }
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular
-  }
-}));
+const useStyles = makeStyles();
 
 const Pendings = props => {
   const classes = useStyles();
@@ -29,9 +16,8 @@ const Pendings = props => {
     .map((inspection, i) => <Pending key={i} pending={inspection} />);
 
   return (
-    <div className={classes.root}>
+    <div style={{ marginLeft: "5%" }}>
       <form
-        style={{ marginLeft: "5%" }}
         className={classes.form}
         noValidate
         autoComplete="off"
@@ -42,13 +28,8 @@ const Pendings = props => {
         <TextField label="Member Number" />
       </form>
       <br />
-      <Button
-        style={{ marginLeft: "5%", marginBottom: "20px" }}
-        color="primary"
-      >
-        Add New Inspection
-      </Button>
-
+      <AddPending />
+      <br />
       <div>{pendingInspections}</div>
     </div>
   );

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Archive from "./Archive";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
+import AddArchive from "./AddArchive";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -47,7 +47,7 @@ const Archives = props => {
         <TextField label="Member Number" />
       </form>
       <br />
-      <Button color="primary">Add Archive</Button>
+      <AddArchive />
       <br />
       <div>{archivesList}</div>
     </div>
