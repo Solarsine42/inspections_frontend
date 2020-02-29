@@ -36,7 +36,7 @@ export default (state = initialState, action) => {
     case LOAD_UWREVIEW_SUCCESS:
       return { ...state, uwReview: action.payload };
     case ADD_UWREVIEW_SUCCESS:
-      return { ...state, all: [...state.all, action.payload[0]] };
+      return { ...state, all: [...state.all, action.payload] };
     case DELETE_UWREVIEW_SUCCESS:
       return {
         ...state,

@@ -26,7 +26,7 @@ const DeletePending = props => {
 
   return (
     <div>
-      <Button color="secondary" onClick={handleClickOpen}>
+      <Button color="secondary" variant="outlined" onClick={handleClickOpen}>
         Delete
       </Button>
       <Dialog
@@ -65,4 +65,10 @@ const DeletePending = props => {
   );
 };
 
-export default connect()(DeletePending);
+function mapStateToProps(state) {
+  return {
+    pendings: state.pending.all
+  };
+}
+
+export default connect(mapStateToProps)(DeletePending);

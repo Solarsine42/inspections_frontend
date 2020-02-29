@@ -28,7 +28,7 @@ const EditPending = props => {
 
   return (
     <div>
-      <Button color="secondary" onClick={handleClickOpen}>
+      <Button color="primary" variant="outlined" onClick={handleClickOpen}>
         Edit
       </Button>
       <Dialog

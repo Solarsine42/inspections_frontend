@@ -34,7 +34,7 @@ const AddPending = props => {
   const [contactPhone, setContactPhone] = useState("");
   const [address, setAddress] = useState("");
   const [specInst, setSpecInst] = useState("");
-  console.log("address", address.id);
+  const [update, setUpdate] = useState(0);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -42,6 +42,7 @@ const AddPending = props => {
 
   const handleClose = () => {
     setOpen(false);
+    setUpdate(update + 1);
   };
 
   return (
@@ -60,11 +61,12 @@ const AddPending = props => {
               onSubmit={() => {
                 props.dispatch(
                   addPending({
-                    member_number: Number(memberNumber),
-                    address: address.id,
-                    contact_info: contactPhone,
                     inspector_id: 0,
-                    special_instructions: specInst
+                    special_instructions: String(specInst),
+                    inspection_type: "ITV",
+                    contact_info: String(contactPhone),
+                    address_id: Number(address.id),
+                    member_number: Number(memberNumber)
                   })
                 );
                 handleClose();
@@ -78,19 +80,19 @@ const AddPending = props => {
               <Autocomplete
                 options={props.addresses}
                 value={address}
-                onChange={e => setAddress(e.target.value)}
-                getOptionLabel={option => [
-                  String(option.street_info),
-                  " ",
-                  String(option.city),
-                  " ",
-                  String(option.state),
-                  " ",
-                  String(option.zipcode)
-                ]}
-                renderInput={params => (
-                  <TextField {...params} label="Address Select" />
-                )}
+                onChange={(event, newValue) => {
+                  setAddress(newValue);
+                }}
+                getOptionLabel={option =>
+                  `${option.street_info ? option.street_info : "Choose"} ${
+                    option.city ? option.city : "street"
+                  } ${option.state ? option.state : "address"} ${
+                    option.zipcode ? option.zipcode : "from list"
+                  }`
+                }
+                renderInput={params => {
+                  return <TextField {...params} label="Address Select" />;
+                }}
               />
               <TextField
                 label="Contact Phone"
@@ -103,14 +105,19 @@ const AddPending = props => {
                 value={specInst}
                 onChange={e => setSpecInst(e.target.value)}
               />
+              <DialogActions>
+                <Button
+                  type="submit"
+                  onClick={handleClose}
+                  color="primary"
+                  autoFocus
+                >
+                  Submit
+                </Button>
+              </DialogActions>
             </form>
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button type="submit" onClick={handleClose} color="primary" autoFocus>
-            Submit
-          </Button>
-        </DialogActions>
       </Dialog>
     </div>
   );

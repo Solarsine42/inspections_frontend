@@ -36,11 +36,11 @@ export default (state = initialState, action) => {
     case LOAD_PENDING_SUCCESS:
       return { ...state, pending: action.payload };
     case ADD_PENDING_SUCCESS:
-      return { ...state, all: [...state.all, action.payload[0]] };
+      return { ...state, all: [...state.all, action.payload] };
     case DELETE_PENDING_SUCCESS:
       return {
         ...state,
-        all: state.all.filter(pending => pending.id !== action.payload.id)
+        all: state.all.filter(pending => pending.id !== action.payload)
       };
     case EDIT_PENDING_SUCCESS:
       return {

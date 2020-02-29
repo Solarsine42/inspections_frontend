@@ -36,7 +36,7 @@ export default (state = initialState, action) => {
     case LOAD_ARCHIVE_SUCCESS:
       return { ...state, archive: action.payload };
     case ADD_ARCHIVE_SUCCESS:
-      return { ...state, all: [...state.all, action.payload[0]] };
+      return { ...state, all: [...state.all, action.payload] };
     case DELETE_ARCHIVE_SUCCESS:
       return {
         ...state,

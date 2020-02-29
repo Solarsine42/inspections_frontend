@@ -91,9 +91,10 @@ export const deletePending = id => {
     axios
       .delete(`http://localhost:8080/pending/${id}`)
       .then(res => {
+        console.log("res.data", res.data);
         dispatch({
           type: DELETE_PENDING_SUCCESS,
-          payload: res.data
+          payload: id
         });
       })
       .catch(err => {

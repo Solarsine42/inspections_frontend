@@ -51,11 +51,19 @@ const Pending = props => {
         </ExpansionPanelDetails>
       </div>
       <ExpansionPanelDetails>
-        <Typography>
-          Special Instructions: {props.pending.special_instructions}
-        </Typography>
-        <DeletePending id={props.pending.id} />
-        <EditPending pending={props.pending} />
+        <Grid container spacing={3}>
+          <Grid item style={{ width: "100%" }}>
+            <Typography>
+              Special Instructions: {props.pending.special_instructions}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <DeletePending id={props.pending.id} />
+          </Grid>
+          <Grid item>
+            <EditPending pending={props.pending} />
+          </Grid>
+        </Grid>
       </ExpansionPanelDetails>
     </ExpansionPanel>
   ) : (
