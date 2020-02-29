@@ -40,14 +40,14 @@ export default (state = initialState, action) => {
     case DELETE_PENDING_SUCCESS:
       return {
         ...state,
-        all: state.all.filter(pending => pending.id !== action.payload[0].id)
+        all: state.all.filter(pending => pending.id !== action.payload.id)
       };
     case EDIT_PENDING_SUCCESS:
       return {
         ...state,
         all: state.all.reduce((acc, patchedPending) => {
-          if (this.pending.id === action.payload[0].id) {
-            acc.push(action.payload[0]);
+          if (patchedPending.id === action.payload.id) {
+            acc.push(action.payload);
           } else {
             acc.push(patchedPending);
           }

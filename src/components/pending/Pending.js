@@ -55,7 +55,7 @@ const Pending = props => {
           Special Instructions: {props.pending.special_instructions}
         </Typography>
         <DeletePending id={props.pending.id} />
-        <EditPending id={props.pending.id} pending={props.pending} />
+        <EditPending pending={props.pending} />
       </ExpansionPanelDetails>
     </ExpansionPanel>
   ) : (

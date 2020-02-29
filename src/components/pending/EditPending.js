@@ -17,7 +17,6 @@ const EditPending = props => {
   const [open, setOpen] = React.useState(false);
   const [contactPhone, setContactPhone] = useState(props.pending.contact_info);
   const [specInst, setSpecInst] = useState(props.pending.special_instructions);
-  console.log(props.special_instructions);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,7 +37,7 @@ const EditPending = props => {
         keepMounted
         onClose={handleClose}
       >
-        <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+        <DialogTitle>{"Edit content of ITV inspection request"}</DialogTitle>
         <DialogContent>
           <form noValidate autoComplete="off">
             <TextField
@@ -65,9 +64,14 @@ const EditPending = props => {
           <Button
             onClick={() => {
               props.dispatch(
-                editPending(props.id, {
-                  contact_info: contactPhone,
-                  special_instructions: specInst
+                editPending({
+                  id: props.pending.id,
+                  inspector_id: props.pending.inspector_id,
+                  special_instructions: String(specInst),
+                  inspection_type: props.pending.inspection_type,
+                  contact_info: String(contactPhone),
+                  address_id: props.pending.address_id,
+                  member_number: props.pending.member_number
                 })
               );
               setOpen(false);

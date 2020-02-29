@@ -105,13 +105,13 @@ export const deletePending = id => {
   };
 };
 
-export const editPending = (id, patchedPending) => {
+export const editPending = patchedPending => {
   return dispatch => {
     dispatch({
       type: EDIT_PENDING_PENDING
     });
     axios
-      .patch(`http://loacalhost:8080/pending/${id}`, patchedPending)
+      .patch(`http://localhost:8080/pending`, patchedPending)
       .then(res => {
         dispatch({
           type: EDIT_PENDING_SUCCESS,
