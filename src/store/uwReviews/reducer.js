@@ -40,13 +40,13 @@ export default (state = initialState, action) => {
     case DELETE_UWREVIEW_SUCCESS:
       return {
         ...state,
-        all: state.all.filter(uwreview => uwreview.id !== action.payload[0].id)
+        all: state.all.filter(uwreview => uwreview.id !== action.payload.id)
       };
     case EDIT_UWREVIEW_SUCCESS:
       return {
         ...state,
         all: state.all.reduce((acc, patchedUWReview) => {
-          if (this.uwReview.id === action.payload[0].id) {
+          if (patchedUWReview.id === action.payload.id) {
             acc.push(action.payload[0]);
           } else {
             acc.push(patchedUWReview);

@@ -105,13 +105,13 @@ export const deleteUWReview = id => {
   };
 };
 
-export const editUWReview = (id, patchedUWReview) => {
+export const editUWReview = patchedUWReview => {
   return dispatch => {
     dispatch({
       type: EDIT_UWREVIEW_PENDING
     });
     axios
-      .patch(`http://loacalhost:8080/uwreviews/${id}`, patchedUWReview)
+      .patch(`http://localhost:8080/uwreviews/`, patchedUWReview)
       .then(res => {
         dispatch({
           type: EDIT_UWREVIEW_SUCCESS,

@@ -105,13 +105,13 @@ export const deleteArchive = id => {
   };
 };
 
-export const editArchive = (id, patchedArchive) => {
+export const editArchive = patchedArchive => {
   return dispatch => {
     dispatch({
       type: EDIT_ARCHIVE_PENDING
     });
     axios
-      .patch(`http://loacalhost:8080/archived/${id}`, patchedArchive)
+      .patch(`http://localhost:8080/archived/`, patchedArchive)
       .then(res => {
         dispatch({
           type: EDIT_ARCHIVE_SUCCESS,

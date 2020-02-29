@@ -40,14 +40,14 @@ export default (state = initialState, action) => {
     case DELETE_ARCHIVE_SUCCESS:
       return {
         ...state,
-        all: state.all.filter(archive => archive.id !== action.payload[0].id)
+        all: state.all.filter(archive => archive.id !== action.payload.id)
       };
     case EDIT_ARCHIVE_SUCCESS:
       return {
         ...state,
         all: state.all.reduce((acc, patchedArchive) => {
-          if (this.archived.id === action.payload[0].id) {
-            acc.push(action.payload[0]);
+          if (patchedArchive.id === action.payload.id) {
+            acc.push(action.payload);
           } else {
             acc.push(patchedArchive);
           }
