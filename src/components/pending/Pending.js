@@ -6,6 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Grid from "@material-ui/core/Grid";
 import Loading from "../utility/Loading";
+import DeletePending from "./DeletePending";
+import EditPending from "./EditPending";
 import { connect } from "react-redux";
 
 const Pending = props => {
@@ -48,11 +50,12 @@ const Pending = props => {
           </span>
         </ExpansionPanelDetails>
       </div>
-
       <ExpansionPanelDetails>
         <Typography>
           Special Instructions: {props.pending.special_instructions}
         </Typography>
+        <DeletePending id={props.pending.id} />
+        <EditPending id={props.pending.id} pending={props.pending} />
       </ExpansionPanelDetails>
     </ExpansionPanel>
   ) : (
