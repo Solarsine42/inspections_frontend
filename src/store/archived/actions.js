@@ -93,7 +93,7 @@ export const deleteArchive = id => {
       .then(res => {
         dispatch({
           type: DELETE_ARCHIVE_SUCCESS,
-          payload: res.data
+          payload: id
         });
       })
       .catch(err => {

@@ -40,7 +40,7 @@ export default (state = initialState, action) => {
     case DELETE_UWREVIEW_SUCCESS:
       return {
         ...state,
-        all: state.all.filter(uwreview => uwreview.id !== action.payload.id)
+        all: state.all.filter(uwreview => uwreview.id !== action.payload)
       };
     case EDIT_UWREVIEW_SUCCESS:
       return {

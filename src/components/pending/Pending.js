@@ -58,10 +58,10 @@ const Pending = props => {
             </Typography>
           </Grid>
           <Grid item>
-            <DeletePending id={props.pending.id} />
+            <EditPending pending={props.pending} />
           </Grid>
           <Grid item>
-            <EditPending pending={props.pending} />
+            <DeletePending id={props.pending.id} />
           </Grid>
         </Grid>
       </ExpansionPanelDetails>

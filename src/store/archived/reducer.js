@@ -40,7 +40,7 @@ export default (state = initialState, action) => {
     case DELETE_ARCHIVE_SUCCESS:
       return {
         ...state,
-        all: state.all.filter(archive => archive.id !== action.payload.id)
+        all: state.all.filter(archive => archive.id !== action.payload)
       };
     case EDIT_ARCHIVE_SUCCESS:
       return {

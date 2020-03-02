@@ -93,7 +93,7 @@ export const deleteUWReview = id => {
       .then(res => {
         dispatch({
           type: DELETE_UWREVIEW_SUCCESS,
-          payload: res.data
+          payload: id
         });
       })
       .catch(err => {

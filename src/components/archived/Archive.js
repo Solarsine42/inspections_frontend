@@ -1,13 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+import DeleteArchive from "./DeleteArchive";
+import EditArchive from "./EditArchive";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import ButtonBase from "@material-ui/core/ButtonBase";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
-import IconButton from "@material-ui/core/IconButton";
 import Loading from "../utility/Loading";
 
 const useStyles = makeStyles(theme => ({
@@ -64,21 +63,9 @@ const Archive = props => {
                   Inspection Date: {props.archive.inspection_date}
                 </Typography>
               </Grid>
-              <Grid item>
-                <IconButton
-                  aria-label="delete"
-                  color="secondary"
-                  className={classes.margin}
-                >
-                  <DeleteIcon />
-                </IconButton>
-                <IconButton
-                  aria-label="edit"
-                  color="primary"
-                  className={classes.margin}
-                >
-                  <EditIcon />
-                </IconButton>
+              <Grid item container>
+                <EditArchive archive={props.archive} />
+                <DeleteArchive id={props.archive.id} />
               </Grid>
             </Grid>
           </Grid>
