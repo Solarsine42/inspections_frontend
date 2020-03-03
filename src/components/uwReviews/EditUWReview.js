@@ -19,18 +19,15 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const EditUWReview = props => {
   const [open, setOpen] = React.useState(false);
-  const [fullWidth, setFullWidth] = React.useState(true);
   const [memberNumber, setMemberNumber] = useState(props.review.member_number);
-  const [address_id, setAddress_id] = useState(props.review.address_id);
+  const [addressID, setAddressID] = useState(props.review.address_id);
   const [inspectionCompany, setInspectionCompany] = useState(
     props.review.inspection_company
   );
   const [inProcess, setInProcess] = useState(props.review.in_process);
   const [requestText, setRequestText] = useState(props.review.request_text);
   const [decisionText, setDecisionText] = useState(props.review.decision_text);
-  const address = props.addresses.filter(
-    address => address.id === props.review.address_id
-  );
+  console.log(typeof inProcess);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -40,13 +37,29 @@ const EditUWReview = props => {
     setOpen(false);
   };
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.dispatch(
+      editUWReview({
+        id: Number(props.review.id),
+        member_number: Number(memberNumber),
+        address_id: Number(addressID),
+        inspection_company: String(inspectionCompany),
+        in_process: Boolean(inProcess),
+        request_date: String(props.review.request_date),
+        request_text: String(requestText),
+        decision_text: String(decisionText)
+      })
+    );
+    setOpen(false);
+  };
+
   return (
     <div>
-      <IconButton aria-label="edit" color="primary" onClick={handleClickOpen}>
+      <IconButton color="primary" onClick={handleClickOpen}>
         <EditIcon />
       </IconButton>
       <Dialog
-        fullWidth={fullWidth}
         open={open}
         TransitionComponent={Transition}
         keepMounted
@@ -54,10 +67,10 @@ const EditUWReview = props => {
       >
         <DialogTitle>{"Edit ITV inspection review"}</DialogTitle>
         <DialogContent>
-          <Grid container spacing={3}>
+          <Grid container style={{ margin: "10px" }}>
             <Grid>
-              <form noValidate autoComplete="off">
-                <Grid item xs={3}>
+              <form onSubmit={handleSubmit} noValidate autoComplete="off">
+                <Grid container style={{ marginTop: "10px" }}>
                   <TextField
                     label="Member Number"
                     name="member_number"
@@ -67,13 +80,16 @@ const EditUWReview = props => {
                   />
 
                   <TextField
-                    label="Inspection Comnpany"
+                    required
+                    style={{ marginLeft: "20px" }}
+                    label="Inspection Company"
                     name="inspection_company"
                     value={inspectionCompany}
                     onChange={e => setInspectionCompany(e.target.value)}
                   />
                   <TextField
-                    label="Review Complete?"
+                    style={{ marginLeft: "20px" }}
+                    label="Review in Process?"
                     name="in_process"
                     value={inProcess}
                     onChange={e => setInProcess(e.target.value)}
@@ -82,31 +98,35 @@ const EditUWReview = props => {
                 </Grid>
                 <Grid item xs>
                   <Autocomplete
+                    style={{ marginLeft: "1px" }}
                     options={props.addresses}
-                    value={address_id}
+                    value={addressID}
                     onChange={(event, newValue) => {
-                      setAddress_id(newValue);
+                      setAddressID(newValue);
                     }}
                     getOptionLabel={option =>
-                      `${option.street_info}
-                 ${option.city}
-                 ${option.state}
-                 ${option.zipcode}`
+                      `${option.street_info}  ${option.city}, ${option.state}  ${option.zipcode}`
                     }
                     renderInput={params => {
                       return <TextField {...params} label="Address Select" />;
                     }}
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid container>
                   <TextField
+                    style={{ width: "100%" }}
+                    multiline
                     label="Request Notes"
                     name="request_text"
                     value={requestText}
                     onChange={e => setRequestText(e.target.value)}
                     required
                   />
+                </Grid>
+                <Grid container>
                   <TextField
+                    style={{ width: "100%" }}
+                    multiline
                     label="Decision Notes"
                     name="decision_text"
                     value={decisionText}
@@ -122,25 +142,7 @@ const EditUWReview = props => {
           <Button onClick={handleClose} color="primary">
             Back
           </Button>
-          <Button
-            onClick={() => {
-              props.dispatch(
-                editUWReview({
-                  id: props.review.id,
-                  member_number: memberNumber,
-                  address_id: address_id.id,
-                  inspection_company: inspectionCompany,
-                  in_process: inProcess,
-                  request_date: props.review.request_date,
-                  request_text: requestText,
-                  decision_text: decisionText
-                })
-              );
-              setOpen(false);
-            }}
-            color="primary"
-            autoFocus
-          >
+          <Button onClick={handleSubmit} color="primary" autoFocus>
             Submit
           </Button>
         </DialogActions>

@@ -47,7 +47,7 @@ export default (state = initialState, action) => {
         ...state,
         all: state.all.reduce((acc, patchedUWReview) => {
           if (patchedUWReview.id === action.payload.id) {
-            acc.push(action.payload[0]);
+            acc.push(action.payload);
           } else {
             acc.push(patchedUWReview);
           }

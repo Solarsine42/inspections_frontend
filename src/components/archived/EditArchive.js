@@ -10,12 +10,26 @@ import TextField from "@material-ui/core/TextField";
 import Slide from "@material-ui/core/Slide";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
+import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  form: {
+    padding: theme.spacing(2),
+    color: theme.palette.text.secondary
+  }
+}));
+
 const EditArchive = props => {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [document, setDocument] = useState(props.archive.document);
   const [inspectionDate, setInspectionDate] = useState(
@@ -23,6 +37,8 @@ const EditArchive = props => {
   );
   const [memberNumber, setMemberNumber] = useState(props.archive.member_number);
   const [addressID, setAddressID] = useState(props.archive.address_id);
+  const [fullWidth] = React.useState(true);
+  const [maxWidth] = React.useState("sm");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,42 +54,72 @@ const EditArchive = props => {
         <EditIcon />
       </IconButton>
       <Dialog
+        fullWidth={fullWidth}
+        maxWidth={maxWidth}
         open={open}
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
       >
-        <DialogTitle>{"Edit content of ITV inspection request"}</DialogTitle>
+        <DialogTitle>{"Edit Archived Inspection"}</DialogTitle>
         <DialogContent>
-          <form noValidate autoComplete="off">
-            <TextField
-              label="Document"
-              name="document"
-              value={document}
-              onChange={e => setDocument(e.target.value)}
-              required
-            />
-            <TextField
-              label="Inspection Date"
-              name="inspection_date"
-              value={inspectionDate}
-              onChange={e => setInspectionDate(e.target.value)}
-            />
-            <TextField
-              label="Member Number"
-              name="member_number"
-              value={memberNumber}
-              onChange={e => setMemberNumber(e.target.value)}
-              required
-            />
-            <TextField
-              label="Address"
-              name="address_id"
-              value={addressID}
-              onChange={e => setAddressID(e.target.value)}
-              required
-            />
-          </form>
+          <Grid className={classes.form}>
+            <form noValidate autoComplete="off">
+              <Grid item>
+                <TextField
+                  style={{ width: "100%" }}
+                  label="Document"
+                  name="document"
+                  value={document}
+                  onChange={e => setDocument(e.target.value)}
+                  required
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  style={{ width: "45%" }}
+                  label="Inspection Date"
+                  name="inspection_date"
+                  value={inspectionDate}
+                  onChange={e => setInspectionDate(e.target.value)}
+                />
+
+                <TextField
+                  style={{ width: "45%", marginLeft: "10%" }}
+                  label="Member Number"
+                  name="member_number"
+                  value={memberNumber}
+                  onChange={e => setMemberNumber(e.target.value)}
+                  required
+                />
+                <Grid item>
+                  <Autocomplete
+                    label="Address"
+                    options={props.addresses}
+                    value={addressID}
+                    name="address_id"
+                    onChange={(event, newValue) => {
+                      setAddressID(newValue);
+                    }}
+                    getOptionLabel={option =>
+                      `${option.street_info}  ${option.city}, ${option.state}  ${option.zipcode}`
+                    }
+                    renderInput={params => {
+                      return <TextField {...params} label="Address Select" />;
+                    }}
+                  />
+                  {/* <TextField
+                    style={{ width: "100%" }}
+                    label="Address"
+                    name="address_id"
+                    value={addressID}
+                    onChange={e => setAddressID(e.target.value)}
+                    required
+                  /> */}
+                </Grid>
+              </Grid>
+            </form>
+          </Grid>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
@@ -105,7 +151,8 @@ const EditArchive = props => {
 
 function mapStateToProps(state) {
   return {
-    archives: state.archived.all
+    archives: state.archived.all,
+    addresses: state.addresses.all
   };
 }
 
