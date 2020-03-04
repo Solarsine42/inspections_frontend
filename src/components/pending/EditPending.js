@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { editPending } from "../../store/pending/actions";
+import Loading from "../utility/Loading";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -26,7 +27,7 @@ const EditPending = props => {
     setOpen(false);
   };
 
-  return (
+  return props.addresses && props.addresses[0] ? (
     <div>
       <Button color="primary" variant="outlined" onClick={handleClickOpen}>
         Edit
@@ -85,12 +86,15 @@ const EditPending = props => {
         </DialogActions>
       </Dialog>
     </div>
+  ) : (
+    <Loading />
   );
 };
 
 function mapStateToProps(state) {
   return {
-    pendings: state.pending.all
+    pendings: state.pending.all,
+    addresses: state.addresses.all
   };
 }
 

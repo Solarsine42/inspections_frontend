@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { editArchive } from "../../store/archived/actions";
+import Loading from "../utility/Loading";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -52,7 +53,7 @@ const EditArchive = props => {
     address => address.id === props.archive.address_id
   );
 
-  return (
+  return props.addresses && props.addresses[0] ? (
     <div>
       <IconButton aria-label="edit" color="primary" onClick={handleClickOpen}>
         <EditIcon />
@@ -120,14 +121,6 @@ const EditArchive = props => {
                       return <TextField {...params} label="Address Select" />;
                     }}
                   />
-                  {/* <TextField
-                    style={{ width: "100%" }}
-                    label="Address"
-                    name="address_id"
-                    value={addressID}
-                    onChange={e => setAddressID(e.target.value)}
-                    required
-                  /> */}
                 </Grid>
               </Grid>
             </form>
@@ -158,6 +151,8 @@ const EditArchive = props => {
         </DialogActions>
       </Dialog>
     </div>
+  ) : (
+    <Loading />
   );
 };
 

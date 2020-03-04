@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { editUWReview } from "../../store/uwReviews/actions";
+import Loading from "../utility/Loading";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -57,7 +58,7 @@ const EditUWReview = props => {
     setOpen(false);
   };
 
-  return (
+  return props.addresses && props.addresses[0] ? (
     <div>
       <IconButton color="primary" onClick={handleClickOpen}>
         <EditIcon />
@@ -159,6 +160,8 @@ const EditUWReview = props => {
         </DialogActions>
       </Dialog>
     </div>
+  ) : (
+    <Loading />
   );
 };
 
