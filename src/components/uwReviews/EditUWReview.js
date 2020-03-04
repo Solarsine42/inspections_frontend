@@ -27,7 +27,10 @@ const EditUWReview = props => {
   const [inProcess, setInProcess] = useState(props.review.in_process);
   const [requestText, setRequestText] = useState(props.review.request_text);
   const [decisionText, setDecisionText] = useState(props.review.decision_text);
-  console.log(typeof inProcess);
+
+  const address = props.addresses.filter(
+    address => address.id === props.review.address_id
+  );
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -43,7 +46,7 @@ const EditUWReview = props => {
       editUWReview({
         id: Number(props.review.id),
         member_number: Number(memberNumber),
-        address_id: Number(addressID),
+        address_id: Number(addressID.id),
         inspection_company: String(inspectionCompany),
         in_process: Boolean(inProcess),
         request_date: String(props.review.request_date),
@@ -105,7 +108,15 @@ const EditUWReview = props => {
                       setAddressID(newValue);
                     }}
                     getOptionLabel={option =>
-                      `${option.street_info}  ${option.city}, ${option.state}  ${option.zipcode}`
+                      `${
+                        option.street_info
+                          ? option.street_info
+                          : address[0].street_info
+                      }  ${option.city ? option.city : address[0].city}, ${
+                        option.state ? option.state : address[0].state
+                      }  ${
+                        option.zipcode ? option.zipcode : address[0].zipcode
+                      }`
                     }
                     renderInput={params => {
                       return <TextField {...params} label="Address Select" />;

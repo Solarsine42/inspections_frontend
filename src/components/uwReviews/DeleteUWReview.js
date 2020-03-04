@@ -44,11 +44,6 @@ const DeleteUWReview = props => {
         <DialogTitle id="alert-dialog-slide-title">
           {"Delete ITV review?"}
         </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Delete?
-          </DialogContentText>
-        </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Back

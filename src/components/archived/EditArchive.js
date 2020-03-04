@@ -48,6 +48,10 @@ const EditArchive = props => {
     setOpen(false);
   };
 
+  const address = props.addresses.filter(
+    address => address.id === props.archive.address_id
+  );
+
   return (
     <div>
       <IconButton aria-label="edit" color="primary" onClick={handleClickOpen}>
@@ -102,7 +106,15 @@ const EditArchive = props => {
                       setAddressID(newValue);
                     }}
                     getOptionLabel={option =>
-                      `${option.street_info}  ${option.city}, ${option.state}  ${option.zipcode}`
+                      `${
+                        option.street_info
+                          ? option.street_info
+                          : address[0].street_info
+                      }  ${option.city ? option.city : address[0].city}, ${
+                        option.state ? option.state : address[0].state
+                      }  ${
+                        option.zipcode ? option.zipcode : address[0].zipcode
+                      }`
                     }
                     renderInput={params => {
                       return <TextField {...params} label="Address Select" />;
@@ -133,7 +145,7 @@ const EditArchive = props => {
                   document: document,
                   inspection_date: inspectionDate,
                   member_number: memberNumber,
-                  address_id: addressID
+                  address_id: addressID.id
                 })
               );
               setOpen(false);

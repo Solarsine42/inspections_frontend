@@ -38,13 +38,8 @@ const DeletePending = props => {
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle id="alert-dialog-slide-title">
-          {"Use Google's location service?"}
+          {"Delete Pending Inspection?"}
         </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            Delete?
-          </DialogContentText>
-        </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Back

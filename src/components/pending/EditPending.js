@@ -42,13 +42,14 @@ const EditPending = props => {
           <form noValidate autoComplete="off">
             <TextField
               label="Contact Phone"
-              helperText="(XXX) XXX-XXXX"
+              helperText="(XXX) XXXXXXX"
               name="contact_info"
               value={contactPhone}
               onChange={e => setContactPhone(e.target.value)}
               required
             />
             <TextField
+              style={{ marginLeft: "20px" }}
               label="Special Instructions"
               name="special_instructions"
               multiline
