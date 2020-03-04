@@ -68,7 +68,7 @@ const AddUWReview = props => {
   return props.addresses && props.addresses[0] ? (
     <div>
       <Button color="primary" onClick={handleClickOpen}>
-        Add ITV Review
+        New Underwriter Review
       </Button>
       <Dialog
         fullWidth={fullWidth}

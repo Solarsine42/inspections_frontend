@@ -49,7 +49,7 @@ const AddPending = props => {
   return props.addresses && props.addresses[0] ? (
     <div>
       <Button color="primary" onClick={handleClickOpen}>
-        Add Inspection
+        New Inspection
       </Button>
       <Dialog fullWidth open={open} onClose={handleClose}>
         <DialogTitle>{"Order New Inspection"}</DialogTitle>

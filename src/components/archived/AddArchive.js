@@ -48,7 +48,7 @@ const AddArchive = props => {
   return props.addresses && props.addresses[0] ? (
     <div>
       <Button color="primary" onClick={handleClickOpen}>
-        Add Archive
+        New Archive
       </Button>
       <Dialog
         fullWidth={fullWidth}
