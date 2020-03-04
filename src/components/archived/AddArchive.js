@@ -69,7 +69,7 @@ const AddArchive = props => {
               onSubmit={() => {
                 props.dispatch(
                   addArchive({
-                    document: document,
+                    document: "https://via.placeholder.com/150",
                     inspection_date: inspectionDate,
                     member_number: memberNumber,
                     address_id: addressID.id
@@ -81,6 +81,7 @@ const AddArchive = props => {
               <Grid item>
                 <TextField
                   style={{ width: "100%" }}
+                  type="file"
                   label="Document"
                   name="document"
                   value={document}
