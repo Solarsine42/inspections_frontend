@@ -90,7 +90,7 @@ const Navi = props => {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar style={{ backgroundColor: "#12395B" }}>
           <IconButton
             aria-controls="simple-menu"
             aria-haspopup="true"
@@ -112,7 +112,11 @@ const Navi = props => {
             <MenuItem onClick={handleClose}>MSR</MenuItem>
             <MenuItem onClick={handleClose}>Underwriter</MenuItem>
           </Menu>
-          <Typography variant="h6" className={classes.title}>
+          <Typography
+            variant="h6"
+            style={{ color: "#FAC705" }}
+            className={classes.title}
+          >
             USAA INSPECTION HUB
           </Typography>
           <div className={classes.search}>
@@ -139,13 +143,13 @@ const Navi = props => {
         >
           <Tabs centered>
             <Link to="/pending">
-              <Tab label="Pending Inspections" />
+              <Tab style={{ color: "#12395B" }} label="Pending Inspections" />
             </Link>
             <Link to="/archived">
-              <Tab label="Inspection Archive" />
+              <Tab style={{ color: "#12395B" }} label="Inspection Archive" />
             </Link>
             <Link to="/uwreviews">
-              <Tab label="Underwriter Review" />
+              <Tab style={{ color: "#12395B" }} label="Underwriter Review" />
             </Link>
           </Tabs>
         </Paper>

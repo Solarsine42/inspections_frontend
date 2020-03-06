@@ -22,7 +22,12 @@ const Pending = props => {
 
   return address ? (
     <ExpansionPanel
-      style={{ background: "primary", width: "80%", marginLeft: "10%" }}
+      style={{
+        background: "primary",
+        width: "80%",
+        marginLeft: "10%",
+        color: "#12395B"
+      }}
     >
       <ExpansionPanelSummary
         expandIcon={<ExpandMoreIcon />}

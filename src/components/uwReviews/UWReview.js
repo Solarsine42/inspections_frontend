@@ -36,7 +36,7 @@ const UWReview = props => {
 
   return props.addresses ? (
     <Card className={classes.root}>
-      <CardContent>
+      <CardContent style={{ color: "#12395B" }}>
         <Typography
           className={classes.title}
           color="textSecondary"
@@ -56,7 +56,7 @@ const UWReview = props => {
           {props.review.in_process ? (
             <i>Currently in process</i>
           ) : (
-            "Review Complete"
+            <i>Review Complete</i>
           )}
         </Typography>
       </CardContent>

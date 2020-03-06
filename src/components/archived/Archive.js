@@ -39,7 +39,7 @@ const Archive = props => {
 
   return props.addresses ? (
     <div className={classes.root}>
-      <Paper className={classes.paper}>
+      <Paper style={{ color: "#12395B" }} className={classes.paper}>
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
