@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { makeStyles } from "@material-ui/core/styles";
+import InputBase from "@material-ui/core/InputBase";
+import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -12,20 +13,70 @@ import Menu from "@material-ui/core/Menu";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Paper from "@material-ui/core/Paper";
+import SearchIcon from "@material-ui/icons/Search";
+import { searchPending } from "../../store/pending/actions";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
+  },
+  menuButton: {
+    marginRight: theme.spacing(2)
+  },
+  title: {
+    flexGrow: 1,
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "block"
+    }
+  },
+  search: {
+    position: "relative",
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    "&:hover": {
+      backgroundColor: fade(theme.palette.common.white, 0.25)
+    },
+    marginLeft: 0,
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: theme.spacing(1),
+      width: "auto"
+    }
+  },
+  searchIcon: {
+    width: theme.spacing(7),
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  inputRoot: {
+    color: "inherit"
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 7),
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
+      width: 120,
+      "&:focus": {
+        width: 200
+      }
+    }
   }
 }));
 
-const Navi = () => {
+const Navi = props => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [value, setValue] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleChange = (event, newValue) => {
+  const handleChange = (e, newValue) => {
     setValue(newValue);
+    props.searchPending(e.target.value);
   };
 
   const handleClick = event => {
@@ -64,6 +115,21 @@ const Navi = () => {
           <Typography variant="h6" className={classes.title}>
             USAA INSPECTION HUB
           </Typography>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              name="mbrNumber"
+              onChange={handleChange}
+              placeholder="Member #"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput
+              }}
+              inputProps={{ "aria-label": "search" }}
+            />
+          </div>
         </Toolbar>
       </AppBar>
       <div>
@@ -94,4 +160,4 @@ const Navi = () => {
   );
 };
 
-export default connect()(Navi);
+export default connect(null, { searchPending })(Navi);

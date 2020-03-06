@@ -14,7 +14,8 @@ import {
   DELETE_PENDING_SUCCESS,
   EDIT_PENDING_FAILURE,
   EDIT_PENDING_PENDING,
-  EDIT_PENDING_SUCCESS
+  EDIT_PENDING_SUCCESS,
+  SEARCH_FROM_NAV
 } from "../constants";
 
 export const getPendings = () => {
@@ -124,5 +125,14 @@ export const editPending = patchedPending => {
           payload: err
         });
       });
+  };
+};
+
+export const searchPending = mbrNumber => {
+  return dispatch => {
+    dispatch({
+      type: SEARCH_FROM_NAV,
+      payload: mbrNumber
+    });
   };
 };

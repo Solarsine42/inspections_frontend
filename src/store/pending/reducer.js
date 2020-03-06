@@ -13,13 +13,15 @@ import {
   DELETE_PENDING_SUCCESS,
   EDIT_PENDING_FAILURE,
   EDIT_PENDING_PENDING,
-  EDIT_PENDING_SUCCESS
+  EDIT_PENDING_SUCCESS,
+  SEARCH_FROM_NAV
 } from "../constants";
 
 const initialState = {
   all: [],
   err: {},
-  pending: {}
+  pending: {},
+  searchPendingFromNav: ""
 };
 
 export default (state = initialState, action) => {
@@ -61,6 +63,9 @@ export default (state = initialState, action) => {
     case DELETE_PENDING_FAILURE:
     case EDIT_PENDING_FAILURE:
       return { ...state, err: action.payload };
+
+    case SEARCH_FROM_NAV:
+      return { ...state, searchPendingFromNav: action.payload };
 
     default:
       return state;
