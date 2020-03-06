@@ -2,13 +2,18 @@ import React from "react";
 import { connect } from "react-redux";
 import Pending from "./Pending";
 import AddPending from "./AddPending";
+import LazyLoad from "react-lazyload";
 
 const Pendings = props => {
   const pendingInspections = props.pendings
     .filter(inspection =>
       String(inspection.member_number).includes(props.mbrSearch)
     )
-    .map((inspection, i) => <Pending key={i} pending={inspection} />);
+    .map((inspection, i) => (
+      <LazyLoad height={50}>
+        <Pending key={i} pending={inspection} />
+      </LazyLoad>
+    ));
 
   return (
     <div style={{ marginLeft: "5%" }}>

@@ -137,13 +137,7 @@ const Navi = props => {
           className={classes.root}
           style={{ width: "90%", marginLeft: "5%" }}
         >
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            indicatorColor="none"
-            textColor="primary"
-            centered
-          >
+          <Tabs centered>
             <Link to="/pending">
               <Tab label="Pending Inspections" />
             </Link>

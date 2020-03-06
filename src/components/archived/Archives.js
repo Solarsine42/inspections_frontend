@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Archive from "./Archive";
 import { makeStyles } from "@material-ui/core/styles";
 import AddArchive from "./AddArchive";
+import LazyLoad from "react-lazyload";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,7 +31,11 @@ const Archives = props => {
   const classes = useStyles();
   const archivesList = props.archives
     .filter(archive => String(archive.member_number).includes(props.mbrSearch))
-    .map((archive, i) => <Archive key={i} archive={archive} />);
+    .map((archive, i) => (
+      <LazyLoad height={50}>
+        <Archive key={i} archive={archive} />
+      </LazyLoad>
+    ));
 
   return (
     <div className={classes.root}>
