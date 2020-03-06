@@ -8,7 +8,7 @@ const UWReviews = props => {
   const uwReviewsList = props.archives
     .filter(archive => String(archive.member_number).includes(props.mbrSearch))
     .map((review, i) => (
-      <LazyLoad height={50}>
+      <LazyLoad key={i} height={50}>
         <UWReview key={i} review={review} />
       </LazyLoad>
     ));

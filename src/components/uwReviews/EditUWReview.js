@@ -28,6 +28,7 @@ const EditUWReview = props => {
   const [inProcess, setInProcess] = useState(props.review.in_process);
   const [requestText, setRequestText] = useState(props.review.request_text);
   const [decisionText, setDecisionText] = useState(props.review.decision_text);
+  console.log("UWAddress", addressID);
 
   const address = props.addresses.filter(
     address => address.id === props.review.address_id
@@ -47,7 +48,7 @@ const EditUWReview = props => {
       editUWReview({
         id: Number(props.review.id),
         member_number: Number(memberNumber),
-        address_id: Number(addressID.id),
+        address_id: Number(addressID.id ? addressID.id : addressID),
         inspection_company: String(inspectionCompany),
         in_process: Boolean(inProcess),
         request_date: String(props.review.request_date),

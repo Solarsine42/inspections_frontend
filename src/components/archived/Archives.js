@@ -32,7 +32,7 @@ const Archives = props => {
   const archivesList = props.archives
     .filter(archive => String(archive.member_number).includes(props.mbrSearch))
     .map((archive, i) => (
-      <LazyLoad height={50}>
+      <LazyLoad key={i} height={50}>
         <Archive key={i} archive={archive} />
       </LazyLoad>
     ));

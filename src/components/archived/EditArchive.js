@@ -134,11 +134,11 @@ const EditArchive = props => {
             onClick={() => {
               props.dispatch(
                 editArchive({
-                  id: props.archive.id,
-                  document: document,
-                  inspection_date: inspectionDate,
-                  member_number: memberNumber,
-                  address_id: addressID.id
+                  id: Number(props.archive.id),
+                  document: String(document),
+                  inspection_date: String(inspectionDate),
+                  member_number: Number(memberNumber),
+                  address_id: String(addressID.id ? addressID.id : addressID)
                 })
               );
               setOpen(false);

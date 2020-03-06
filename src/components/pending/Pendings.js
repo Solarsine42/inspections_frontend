@@ -10,7 +10,7 @@ const Pendings = props => {
       String(inspection.member_number).includes(props.mbrSearch)
     )
     .map((inspection, i) => (
-      <LazyLoad height={50}>
+      <LazyLoad key={i} height={50}>
         <Pending key={i} pending={inspection} />
       </LazyLoad>
     ));
@@ -19,6 +19,7 @@ const Pendings = props => {
     <div style={{ marginLeft: "5%" }}>
       <br />
       <AddPending />
+      <br />
       <br />
       <div>{pendingInspections}</div>
     </div>

@@ -107,6 +107,7 @@ export const deleteUWReview = id => {
 };
 
 export const editUWReview = patchedUWReview => {
+  console.log("action", patchedUWReview);
   return dispatch => {
     dispatch({
       type: EDIT_UWREVIEW_PENDING
