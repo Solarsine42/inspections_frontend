@@ -14,7 +14,8 @@ import {
   DELETE_ARCHIVE_SUCCESS,
   EDIT_ARCHIVE_FAILURE,
   EDIT_ARCHIVE_PENDING,
-  EDIT_ARCHIVE_SUCCESS
+  EDIT_ARCHIVE_SUCCESS,
+  SEARCH_FROM_NAV
 } from "../constants";
 
 export const getArchives = () => {
@@ -124,5 +125,14 @@ export const editArchive = patchedArchive => {
           payload: err
         });
       });
+  };
+};
+
+export const searchArchives = mbrNumber => {
+  return dispatch => {
+    dispatch({
+      type: SEARCH_FROM_NAV,
+      payload: mbrNumber
+    });
   };
 };

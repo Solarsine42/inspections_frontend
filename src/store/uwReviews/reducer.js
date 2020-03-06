@@ -13,13 +13,15 @@ import {
   DELETE_UWREVIEW_SUCCESS,
   EDIT_UWREVIEW_FAILURE,
   EDIT_UWREVIEW_PENDING,
-  EDIT_UWREVIEW_SUCCESS
+  EDIT_UWREVIEW_SUCCESS,
+  SEARCH_FROM_NAV
 } from "../constants";
 
 const initialState = {
   all: [],
   err: {},
-  uwReview: {}
+  uwReview: {},
+  searchUWReviewsFromNav: ""
 };
 
 export default (state = initialState, action) => {
@@ -61,6 +63,9 @@ export default (state = initialState, action) => {
     case DELETE_UWREVIEW_FAILURE:
     case EDIT_UWREVIEW_FAILURE:
       return { ...state, err: action.payload };
+
+    case SEARCH_FROM_NAV:
+      return { ...state, searchUWReviewsFromNav: action.payload };
 
     default:
       return state;

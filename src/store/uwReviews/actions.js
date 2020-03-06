@@ -14,7 +14,8 @@ import {
   DELETE_UWREVIEW_SUCCESS,
   EDIT_UWREVIEW_FAILURE,
   EDIT_UWREVIEW_PENDING,
-  EDIT_UWREVIEW_SUCCESS
+  EDIT_UWREVIEW_SUCCESS,
+  SEARCH_FROM_NAV
 } from "../constants";
 
 export const getUWReviews = () => {
@@ -124,5 +125,14 @@ export const editUWReview = patchedUWReview => {
           payload: err
         });
       });
+  };
+};
+
+export const searchArchives = mbrNumber => {
+  return dispatch => {
+    dispatch({
+      type: SEARCH_FROM_NAV,
+      payload: mbrNumber
+    });
   };
 };

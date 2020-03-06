@@ -13,13 +13,15 @@ import {
   DELETE_ARCHIVE_SUCCESS,
   EDIT_ARCHIVE_FAILURE,
   EDIT_ARCHIVE_PENDING,
-  EDIT_ARCHIVE_SUCCESS
+  EDIT_ARCHIVE_SUCCESS,
+  SEARCH_FROM_NAV
 } from "../constants";
 
 const initialState = {
   all: [],
   err: {},
-  archive: {}
+  archive: {},
+  searchArchivesFromNav: ""
 };
 
 export default (state = initialState, action) => {
@@ -61,6 +63,9 @@ export default (state = initialState, action) => {
     case DELETE_ARCHIVE_FAILURE:
     case EDIT_ARCHIVE_FAILURE:
       return { ...state, err: action.payload };
+
+    case SEARCH_FROM_NAV:
+      return { ...state, searchArchivesFromNav: action.payload };
 
     default:
       return state;

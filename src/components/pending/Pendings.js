@@ -4,7 +4,6 @@ import Pending from "./Pending";
 import AddPending from "./AddPending";
 
 const Pendings = props => {
-  // const [search, setSearch] = useState("");
   const pendingInspections = props.pendings
     .filter(inspection =>
       String(inspection.member_number).includes(props.mbrSearch)

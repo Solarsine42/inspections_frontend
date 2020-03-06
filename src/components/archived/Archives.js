@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import Archive from "./Archive";
-import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import AddArchive from "./AddArchive";
 
@@ -29,23 +28,12 @@ const useStyles = makeStyles(theme => ({
 
 const Archives = props => {
   const classes = useStyles();
-  const [search, setSearch] = useState("");
   const archivesList = props.archives
-    .filter(archive => String(archive.member_number).includes(search))
+    .filter(archive => String(archive.member_number).includes(props.mbrSearch))
     .map((archive, i) => <Archive key={i} archive={archive} />);
 
   return (
     <div className={classes.root}>
-      <form
-        className={classes.form}
-        noValidate
-        autoComplete="off"
-        name="search"
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-      >
-        <TextField label="Member Number" />
-      </form>
       <br />
       <AddArchive />
       <br />
@@ -56,7 +44,8 @@ const Archives = props => {
 
 function mapStateToProps(state) {
   return {
-    archives: state.archived.all
+    archives: state.archived.all,
+    mbrSearch: state.archived.searchArchivesFromNav
   };
 }
 
