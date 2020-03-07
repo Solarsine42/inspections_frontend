@@ -103,6 +103,7 @@ const Navi = props => {
 
   const handleChange = (e, newValue) => {
     setValue(newValue);
+    console.log("CH VAL:", e.target.value);
     props.searchPending(e.target.value);
   };
 
