@@ -46,7 +46,9 @@ const Archive = props => {
               <img
                 className={classes.img}
                 alt="complex"
-                src={props.archive.document}
+                src={
+                  "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg"
+                }
               />
             </ButtonBase>
           </Grid>

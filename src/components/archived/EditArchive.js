@@ -135,7 +135,7 @@ const EditArchive = props => {
               props.dispatch(
                 editArchive({
                   id: Number(props.archive.id),
-                  document: String(document),
+                  document: String(props.archive.document),
                   inspection_date: String(inspectionDate),
                   member_number: Number(memberNumber),
                   address_id: String(addressID.id ? addressID.id : addressID)

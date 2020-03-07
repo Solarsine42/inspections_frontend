@@ -8,17 +8,31 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Toolbar from "@material-ui/core/Toolbar";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Paper from "@material-ui/core/Paper";
 import SearchIcon from "@material-ui/icons/Search";
 import { searchPending } from "../../store/pending/actions";
+import Drawer from "@material-ui/core/Drawer";
+import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import Divider from "@material-ui/core/Divider";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
+import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
+  },
+  list: {
+    width: 250
+  },
+  fullList: {
+    width: "auto"
   },
   menuButton: {
     marginRight: theme.spacing(2)
@@ -73,6 +87,19 @@ const Navi = props => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [state, setState] = React.useState({ left: false });
+  const preventDefault = event => event.preventDefault();
+
+  const toggleDrawer = (side, open) => event => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [side]: open });
+  };
 
   const handleChange = (e, newValue) => {
     setValue(newValue);
@@ -87,14 +114,83 @@ const Navi = props => {
     setAnchorEl(null);
   };
 
+  const sideList = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <List>
+        <ListItem>
+          <Typography variant="h6">KD References</Typography>
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
+        <ListItem button>
+          <ListItemIcon>
+            <KeyboardArrowRightIcon />
+          </ListItemIcon>
+          <Link href="#" color="inherit" onClick={preventDefault}>
+            <ListItemText>ITV Deviation</ListItemText>
+          </Link>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <KeyboardArrowRightIcon />
+          </ListItemIcon>
+          <Link href="#" color="inherit" onClick={preventDefault}>
+            <ListItemText>Determining ITV</ListItemText>
+          </Link>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <KeyboardArrowRightIcon />
+          </ListItemIcon>
+          <Link href="#" color="inherit" onClick={preventDefault}>
+            <ListItemText>Dwelling Types</ListItemText>
+          </Link>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <KeyboardArrowRightIcon />
+          </ListItemIcon>
+          <Link href="#" color="inherit" onClick={preventDefault}>
+            <ListItemText>XACTWARE Home Characteristics</ListItemText>
+          </Link>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <KeyboardArrowRightIcon />
+          </ListItemIcon>
+          <Link href="#" color="inherit" onClick={preventDefault}>
+            <ListItemText>When to Submit a Request to UW</ListItemText>
+          </Link>
+        </ListItem>
+        <Divider />
+        <Divider />
+        <ListItem button>
+          <ListItemIcon>
+            <HelpOutlineIcon />
+          </ListItemIcon>
+          <Link href="#" color="inherit" onClick={preventDefault}>
+            <ListItemText>Submit a Feature Request</ListItemText>
+          </Link>
+        </ListItem>
+      </List>
+    </div>
+  );
+
   return (
     <div className={classes.root}>
+      <Drawer open={state.left} onClose={toggleDrawer("left", false)}>
+        {sideList("left")}
+      </Drawer>
       <AppBar position="static">
         <Toolbar style={{ backgroundColor: "#12395B" }}>
           <IconButton
-            aria-controls="simple-menu"
-            aria-haspopup="true"
-            onClick={handleClick}
+            onClick={toggleDrawer("left", true)}
             edge="start"
             className={classes.menuButton}
             color="inherit"
@@ -102,22 +198,12 @@ const Navi = props => {
           >
             <MenuIcon />
           </IconButton>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem onClick={handleClose}>MSR</MenuItem>
-            <MenuItem onClick={handleClose}>Underwriter</MenuItem>
-          </Menu>
           <Typography
             variant="h6"
             style={{ color: "#FAC705" }}
             className={classes.title}
           >
-            USAA INSPECTION HUB
+            USAA ITV INSPECTION HUB
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
