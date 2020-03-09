@@ -1,3 +1,18 @@
 html {
   background: #e8e8e8;
 }
+#homePage {
+  color: black;
+  background-color: #b1becc;
+  width: 70%;
+  margin: auto;
+  margin-top: 10%;
+  border: black 2px solid;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#homeText {
+  font-family: Arial, Helvetica, sans-serif;
+  padding-left: 20px;
+}
