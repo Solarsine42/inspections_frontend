@@ -11,7 +11,7 @@ import TextField from "@material-ui/core/TextField";
 import Slide from "@material-ui/core/Slide";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
-import Autocomplete from "@material-ui/lab/Autocomplete";
+
 import Grid from "@material-ui/core/Grid";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -20,19 +20,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const EditUWReview = props => {
   const [open, setOpen] = React.useState(false);
-  const [memberNumber, setMemberNumber] = useState(props.review.member_number);
-  const [addressID, setAddressID] = useState(props.review.address_id);
-  const [inspectionCompany, setInspectionCompany] = useState(
-    props.review.inspection_company
-  );
-  const [inProcess, setInProcess] = useState(props.review.in_process);
-  const [requestText, setRequestText] = useState(props.review.request_text);
-  const [decisionText, setDecisionText] = useState(props.review.decision_text);
-  console.log("UWAddress", addressID);
-
-  const address = props.addresses.filter(
-    address => address.id === props.review.address_id
-  );
+  const [memberNumber, setMemberNumber] = useState("");
+  const [inspectionCompany, setInspectionCompany] = useState("");
+  const [inProcess, setInProcess] = useState("");
+  const [requestText, setRequestText] = useState("");
+  const [decisionText, setDecisionText] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -47,13 +39,23 @@ const EditUWReview = props => {
     props.dispatch(
       editUWReview({
         id: Number(props.review.id),
-        member_number: Number(memberNumber),
-        address_id: Number(addressID.id ? addressID.id : addressID),
-        inspection_company: String(inspectionCompany),
-        in_process: Boolean(inProcess),
+        member_number: Number(
+          memberNumber ? memberNumber : props.review.member_number
+        ),
+        address_id: Number(props.review.address_id),
+        inspection_company: String(
+          inspectionCompany
+            ? inspectionCompany
+            : props.review.inspection_company
+        ),
+        in_process: Boolean(inProcess ? inProcess : props.review.in_process),
         request_date: String(props.review.request_date),
-        request_text: String(requestText),
-        decision_text: String(decisionText)
+        request_text: String(
+          requestText ? requestText : props.review.request_text
+        ),
+        decision_text: String(
+          decisionText ? decisionText : props.review.decision_text
+        )
       })
     );
     setOpen(false);
@@ -79,7 +81,9 @@ const EditUWReview = props => {
                   <TextField
                     label="Member Number"
                     name="member_number"
-                    value={memberNumber}
+                    value={
+                      memberNumber ? memberNumber : props.review.member_number
+                    }
                     onChange={e => setMemberNumber(e.target.value)}
                     required
                   />
@@ -89,49 +93,32 @@ const EditUWReview = props => {
                     style={{ marginLeft: "20px" }}
                     label="Inspection Company"
                     name="inspection_company"
-                    value={inspectionCompany}
+                    value={
+                      inspectionCompany
+                        ? inspectionCompany
+                        : props.review.inspection_company
+                    }
                     onChange={e => setInspectionCompany(e.target.value)}
                   />
                   <TextField
                     style={{ marginLeft: "20px" }}
                     label="Review in Process?"
                     name="in_process"
-                    value={inProcess}
+                    value={inProcess ? inProcess : props.review.in_process}
                     onChange={e => setInProcess(e.target.value)}
                     required
                   />
                 </Grid>
-                <Grid item xs>
-                  <Autocomplete
-                    style={{ marginLeft: "1px" }}
-                    options={props.addresses}
-                    value={addressID}
-                    onChange={(event, newValue) => {
-                      setAddressID(newValue);
-                    }}
-                    getOptionLabel={option =>
-                      `${
-                        option.street_info
-                          ? option.street_info
-                          : address[0].street_info
-                      }  ${option.city ? option.city : address[0].city}, ${
-                        option.state ? option.state : address[0].state
-                      }  ${
-                        option.zipcode ? option.zipcode : address[0].zipcode
-                      }`
-                    }
-                    renderInput={params => {
-                      return <TextField {...params} label="Address Select" />;
-                    }}
-                  />
-                </Grid>
+
                 <Grid container>
                   <TextField
                     style={{ width: "100%" }}
                     multiline
                     label="Request Notes"
                     name="request_text"
-                    value={requestText}
+                    value={
+                      requestText ? requestText : props.review.request_text
+                    }
                     onChange={e => setRequestText(e.target.value)}
                     required
                   />
@@ -142,7 +129,9 @@ const EditUWReview = props => {
                     multiline
                     label="Decision Notes"
                     name="decision_text"
-                    value={decisionText}
+                    value={
+                      decisionText ? decisionText : props.review.decision_text
+                    }
                     onChange={e => setDecisionText(e.target.value)}
                     required
                   />

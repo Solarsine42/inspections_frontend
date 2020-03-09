@@ -32,12 +32,9 @@ const useStyles = makeStyles(theme => ({
 const EditArchive = props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [document, setDocument] = useState(props.archive.document);
-  const [inspectionDate, setInspectionDate] = useState(
-    props.archive.inspection_date
-  );
-  const [memberNumber, setMemberNumber] = useState(props.archive.member_number);
-  const [addressID, setAddressID] = useState(props.archive.address_id);
+  const [document, setDocument] = useState("");
+  const [inspectionDate, setInspectionDate] = useState("");
+  const [memberNumber, setMemberNumber] = useState("");
   const [fullWidth] = React.useState(true);
   const [maxWidth] = React.useState("sm");
 
@@ -75,7 +72,7 @@ const EditArchive = props => {
                   style={{ width: "100%" }}
                   label="Document"
                   name="document"
-                  value={document}
+                  value={document ? document : props.archive.document}
                   onChange={e => setDocument(e.target.value)}
                   required
                 />
@@ -85,7 +82,11 @@ const EditArchive = props => {
                   style={{ width: "45%" }}
                   label="Inspection Date"
                   name="inspection_date"
-                  value={inspectionDate}
+                  value={
+                    inspectionDate
+                      ? inspectionDate
+                      : props.archive.inspection_date
+                  }
                   onChange={e => setInspectionDate(e.target.value)}
                 />
 
@@ -93,35 +94,12 @@ const EditArchive = props => {
                   style={{ width: "45%", marginLeft: "10%" }}
                   label="Member Number"
                   name="member_number"
-                  value={memberNumber}
+                  value={
+                    memberNumber ? memberNumber : props.archive.member_number
+                  }
                   onChange={e => setMemberNumber(e.target.value)}
                   required
                 />
-                <Grid item>
-                  <Autocomplete
-                    label="Address"
-                    options={props.addresses}
-                    value={addressID}
-                    name="address_id"
-                    onChange={(event, newValue) => {
-                      setAddressID(newValue);
-                    }}
-                    getOptionLabel={option =>
-                      `${
-                        option.street_info
-                          ? option.street_info
-                          : address[0].street_info
-                      }  ${option.city ? option.city : address[0].city}, ${
-                        option.state ? option.state : address[0].state
-                      }  ${
-                        option.zipcode ? option.zipcode : address[0].zipcode
-                      }`
-                    }
-                    renderInput={params => {
-                      return <TextField {...params} label="Address Select" />;
-                    }}
-                  />
-                </Grid>
               </Grid>
             </form>
           </Grid>
@@ -135,10 +113,18 @@ const EditArchive = props => {
               props.dispatch(
                 editArchive({
                   id: Number(props.archive.id),
-                  document: String(props.archive.document),
-                  inspection_date: String(inspectionDate),
-                  member_number: Number(memberNumber),
-                  address_id: String(addressID.id ? addressID.id : addressID)
+                  document: String(
+                    "https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg"
+                  ),
+                  inspection_date: String(
+                    inspectionDate
+                      ? inspectionDate
+                      : props.archive.inspection_date
+                  ),
+                  member_number: Number(
+                    memberNumber ? memberNumber : props.archive.member_number
+                  ),
+                  address_id: String(props.archive.address_id)
                 })
               );
               setOpen(false);
