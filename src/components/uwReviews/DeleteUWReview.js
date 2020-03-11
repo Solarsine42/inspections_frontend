@@ -25,14 +25,15 @@ const DeleteUWReview = props => {
   };
 
   return (
-    <div>
-      <IconButton
-        aria-label="delete"
+    <div style={{ marginLeft: "20px" }}>
+      <Button
+        size="small"
+        variant="outlined"
         color="secondary"
         onClick={handleClickOpen}
       >
-        <DeleteIcon />
-      </IconButton>
+        Delete
+      </Button>
       <Dialog
         open={open}
         TransitionComponent={Transition}

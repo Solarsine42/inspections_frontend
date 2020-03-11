@@ -52,9 +52,14 @@ const EditArchive = props => {
 
   return props.addresses && props.addresses[0] ? (
     <div>
-      <IconButton aria-label="edit" color="primary" onClick={handleClickOpen}>
-        <EditIcon />
-      </IconButton>
+      <Button
+        color="primary"
+        size="small"
+        variant="outlined"
+        onClick={handleClickOpen}
+      >
+        Edit
+      </Button>
       <Dialog
         fullWidth={fullWidth}
         maxWidth={maxWidth}

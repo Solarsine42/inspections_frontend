@@ -63,9 +63,14 @@ const EditUWReview = props => {
 
   return props.addresses && props.addresses[0] ? (
     <div>
-      <IconButton color="primary" onClick={handleClickOpen}>
-        <EditIcon />
-      </IconButton>
+      <Button
+        variant="outlined"
+        size="small"
+        color="primary"
+        onClick={handleClickOpen}
+      >
+        Edit
+      </Button>
       <Dialog
         open={open}
         TransitionComponent={Transition}

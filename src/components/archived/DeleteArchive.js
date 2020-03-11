@@ -25,14 +25,15 @@ const DeleteArchive = props => {
   };
 
   return (
-    <div>
-      <IconButton
-        aria-label="delete"
+    <div style={{ marginLeft: "20px" }}>
+      <Button
+        variant="outlined"
+        size="small"
         color="secondary"
         onClick={handleClickOpen}
       >
-        <DeleteIcon />
-      </IconButton>
+        Delete
+      </Button>
       <Dialog
         open={open}
         TransitionComponent={Transition}
