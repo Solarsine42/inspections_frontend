@@ -53,7 +53,7 @@ const UWReview = props => {
         <Typography variant="body2" component="p">
           Requested: {props.review.request_date}
           <br />
-          {props.review.in_process ? (
+          {props.review.in_process === true ? (
             <i>Currently in process</i>
           ) : (
             <i>Review Complete</i>

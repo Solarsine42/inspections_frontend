@@ -25,7 +25,7 @@ const DeleteUWReview = props => {
   };
 
   return (
-    <div style={{ marginLeft: "20px" }}>
+    <div style={{ marginLeft: "13px", marginBottom: "10px" }}>
       <Button
         size="small"
         variant="outlined"

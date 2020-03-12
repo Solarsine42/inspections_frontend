@@ -9,8 +9,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import TextField from "@material-ui/core/TextField";
 import Slide from "@material-ui/core/Slide";
-import EditIcon from "@material-ui/icons/Edit";
-import IconButton from "@material-ui/core/IconButton";
 
 import Grid from "@material-ui/core/Grid";
 
@@ -64,6 +62,7 @@ const EditUWReview = props => {
   return props.addresses && props.addresses[0] ? (
     <div>
       <Button
+        style={{ marginLeft: "8px", marginBottom: "10px" }}
         variant="outlined"
         size="small"
         color="primary"
