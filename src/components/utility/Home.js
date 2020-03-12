@@ -13,7 +13,7 @@ const Home = () => {
         <p>
           Utilize the search field in the upper-right-hand corner to refine your
           search and your options to a particular member. Utilize the Menu
-          button in the upper-left-hand corner for commonly use KD references,
+          button in the upper-left-hand corner for commonly used KD references,
           or to submit a feature suggestion to the creator.
         </p>
         <p>Click on any of the three links above to begin.</p>

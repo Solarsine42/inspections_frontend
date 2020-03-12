@@ -147,7 +147,7 @@ const EditUWReview = props => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Back
+            Cancel
           </Button>
           <Button onClick={handleSubmit} color="primary" autoFocus>
             Submit

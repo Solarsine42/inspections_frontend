@@ -45,7 +45,7 @@ const DeleteArchive = props => {
         </DialogTitle>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Back
+            Cancel
           </Button>
           <Button
             onClick={() => {
